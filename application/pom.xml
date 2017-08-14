@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>ru.iteco</groupId>
+	<artifactId>application</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>application</name>
+	<description>Web application</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.6.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<!-- tag::database[] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+            <version>4.2.0</version>
+		</dependency>
+		<!-- end::database[] -->
+		<!-- tag::web[] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<!-- end::web[] -->
+		<!-- tag::session[] -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- end::session[] -->
+		<!-- tag::common[] -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.8.9</version>
+		</dependency>
+		<!-- end::common[] -->
+		<!-- tag::iteco[] -->
+		<dependency>
+			<groupId>ru.iteco</groupId>
+			<artifactId>storage</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ru.iteco</groupId>
+			<artifactId>flat-block</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ru.iteco</groupId>
+			<artifactId>utilities</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>ru.iteco.vaadin</groupId>
+            <artifactId>vaadin-session-redis-patch</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+		<!-- end::iteco[] -->
+		<!-- tag::admin[] -->
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.teemusa</groupId>
+			<artifactId>sidemenu</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<!-- end::admin[] -->
+		<!-- tag::test[] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>4.2.3.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- end::test[] -->
+        <!-- tag::hot_swapping[] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+        <!-- end::hot_swapping[] -->
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<version>8.0.6</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<repositories>
+		<repository>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<!-- minify and combine js/css -->
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.6</version>
+				<executions>
+					<execution>
+						<id>default-minify</id>
+						<configuration>
+							<charset>UTF-8</charset>
+                            <webappSourceDir>${project.basedir}/src/main</webappSourceDir>
+                            <webappTargetDir>${project.build.outputDirectory}</webappTargetDir>
+							<cssSourceDir>resources/static/css</cssSourceDir>
+                            <cssSourceFiles>
+                                <cssSourceFile>bootstrap.css</cssSourceFile>
+                                <cssSourceFile>bootstrap-theme.css</cssSourceFile>
+								<cssSourceFile>application.css</cssSourceFile>
+                            </cssSourceFiles>
+                            <cssSourceExcludes>
+                                <cssSourceExclude>*.min.css</cssSourceExclude>
+                            </cssSourceExcludes>
+                            <cssTargetDir>static/minify</cssTargetDir>
+							<cssFinalFile>combined.css</cssFinalFile>
+							<jsSourceDir>resources/static/js</jsSourceDir>
+                            <jsSourceFiles>
+                                <jsSourceFile>jquery.js</jsSourceFile>
+                                <jsSourceFile>bootstrap.js</jsSourceFile>
+                                <jsSourceFile>application.js</jsSourceFile>
+                                <jsSourceFile>login.js</jsSourceFile>
+                            </jsSourceFiles>
+                            <jsSourceExcludes>
+                                <jsSourceExclude>*.min.js</jsSourceExclude>
+                            </jsSourceExcludes>
+                            <jsTargetDir>static/minify</jsTargetDir>
+                            <jsFinalFile>combined.js</jsFinalFile>
+							<jsEngine>CLOSURE</jsEngine>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+		</plugins>
+		<finalName>dio-gaming-platform</finalName>
+	</build>
+</project>
